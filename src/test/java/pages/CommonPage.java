@@ -7,6 +7,7 @@ import org.testng.Assert;
 import pages.BasePage;
 
 public class CommonPage extends BasePage {
+
     //locatori specifici paginii;
     private By subMenuListLocator = By.xpath("//span[@class='text']");
 
@@ -15,6 +16,7 @@ public class CommonPage extends BasePage {
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.getTitle(), "DEMOQA", "Page is not loaded properly");
     }

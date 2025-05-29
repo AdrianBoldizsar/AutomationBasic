@@ -28,6 +28,13 @@ public class FramesTest extends BaseTest {
     }
 
 //    //facem o metoda care deschide un browser;
+//    public void openBrowser() {
+//        driver = new ChromeDriver();
+//        // navigam catre pagine website-ului
+//        driver.get("https://demoqa.com/");
+//        //facem fereastra browser-ului maximize
+//        driver.manage().window().maximize();
+//    }
 //
 //    //facem o metoda care alege un meniu;
 //    public void chooseMenu() {
@@ -38,8 +45,8 @@ public class FramesTest extends BaseTest {
 //        scrollIntoElement(alertsWindowsAndFramesMenu);
 //        alertsWindowsAndFramesMenu.click();
 //    }
-//    //facem o metoda care sa faca scroll;
 //
+//    //facem o metoda care sa faca scroll;
 //    public void scrollIntoElement(WebElement alertsMenu) {
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("arguments[0].scrollIntoView(true);", alertsMenu);

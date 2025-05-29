@@ -57,6 +57,7 @@ public class PracticeFormPage extends BasePage{
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.findElement(pageTitle).getText(),"Practice Form","Page is not loaded properly");
     }
@@ -72,9 +73,10 @@ public class PracticeFormPage extends BasePage{
         scrollPageDown("200");
         selectHobbies();
         scrollPageDown("200");
+        chooseSubject();
         uploadImage();
         fillAddress();
-
+        fillStateAndCity();
         clickSubmitButton();
 
     }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WindowsPage extends BasePage {
+
     //locatori specifici paginii;
     private By pageTitle = By.xpath("//h1[@class]");
     private By newTabButton = By.id("tabButton");
@@ -23,6 +24,7 @@ public class WindowsPage extends BasePage {
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.findElement(pageTitle).getText(), "Browser Windows", "Page is not loaded properly");
     }

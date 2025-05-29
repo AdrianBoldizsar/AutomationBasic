@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class DroppablePage extends BasePage {
+
     //locatori specifici;
     private By pageTitle = By.xpath("//h1[@class]");
     private By draggableElement = By.id("draggable");
@@ -17,6 +18,7 @@ public class DroppablePage extends BasePage {
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.findElement(pageTitle).getText(), "Droppable", "Page is not loaded properly");
     }

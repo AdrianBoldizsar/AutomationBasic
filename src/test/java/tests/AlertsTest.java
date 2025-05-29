@@ -27,7 +27,7 @@ public class AlertsTest extends BaseTest {
         alertsPage.interactWithFirstAlert();
     }
 
-//IMPLEMENTAREA BRUTA A TESTULUI
+//    //IMPLEMENTAREA BRUTA A TESTULUI
 //    //facem o metoda care deschide un browser;
 //    public void openBrowser() {
 //        driver = new ChromeDriver();
@@ -37,7 +37,6 @@ public class AlertsTest extends BaseTest {
 //        driver.manage().window().maximize();
 //    }
 //    // facem o metoda care alege un meniu;
-
 //    public void chooseMenu() {
 //        //identificam meniul dorit si facem click pe el;
 //        WebElement alertsWindowsAndFramesMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
@@ -46,6 +45,7 @@ public class AlertsTest extends BaseTest {
 //        scrollIntoElement(alertsWindowsAndFramesMenu);
 //        alertsWindowsAndFramesMenu.click();
 //    }
+//
 //    //facem o metoda care sa faca scroll;
 //    public void scrollIntoElement(WebElement alertsMenu) {
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -85,14 +85,17 @@ public class AlertsTest extends BaseTest {
 //        if (alertValue.equals("ok")) {
 //            confirmAlert.accept();
 //            WebElement alertResultText = driver.findElement(By.id("confirmResult"));
-//            Assert.assertTrue(alertResultText.getText().contains(alertValue), "You didn't select Ok. You selected: " + alertResultText.getText());
+//            Assert.assertTrue(alertResultText.getText().contains(alertValue), "You didn't select Ok. You selected: "
+//            + alertResultText.getText());
 //        }
 //        if (alertValue.equals("Cancel")) {
 //            confirmAlert.dismiss();
 //            WebElement alertResultText = driver.findElement(By.id("confirmResult"));
-//            Assert.assertTrue(alertResultText.getText().contains(alertValue), "You didn't select Cancel. You selected: " + alertResultText.getText());
+//            Assert.assertTrue(alertResultText.getText().contains(alertValue), "You didn't select Cancel. You selected: "
+//            + alertResultText.getText());
 //        }
 //    }
+//
 //        public void interactWithPromptBox(String alertValue){
 //            WebElement confirmPromptButton = driver.findElement(By.id("promtButton"));
 //            confirmPromptButton.click();
@@ -102,6 +105,7 @@ public class AlertsTest extends BaseTest {
 //            //apoi apasa pe butonul ok;
 //            promptAlert.accept();
 //            WebElement promptResult= driver.findElement(By.id("promptResult"));
-//            Assert.assertTrue(promptResult.getText().contains(alertValue),"You didn't enter the right name. In that box " + promptResult.getText());
+//            Assert.assertTrue(promptResult.getText().contains(alertValue),"You didn't enter the right name. In that box "
+//            + promptResult.getText());
 //        }
     }

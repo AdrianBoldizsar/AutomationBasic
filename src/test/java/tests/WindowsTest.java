@@ -22,8 +22,8 @@ public class WindowsTest extends BaseTest {
         windowsPage.interactWithNewMessageWindow();
     }
 
-    //VARIANTA BRUTA A TESTULUI
-    //facem o metoda care deschide un browser;
+//    //VARIANTA BRUTA A TESTULUI
+//    //facem o metoda care deschide un browser;
 //    public void openBrowser() {
 //        driver = new ChromeDriver();
 //        // navigam catre pagine website-ului
@@ -31,8 +31,8 @@ public class WindowsTest extends BaseTest {
 //        //facem fereastra browser-ului maximize
 //        driver.manage().window().maximize();
 //    }
-    //facem o metoda care alege un meniu;
-
+//
+//    //facem o metoda care alege un meniu;
 //    public void chooseMenu() {
 //        //identificam meniul dorit si facem click pe el;
 //        WebElement alertsWindowsAndFramesMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
@@ -41,8 +41,8 @@ public class WindowsTest extends BaseTest {
 //        scrollIntoElement(alertsWindowsAndFramesMenu);
 //        alertsWindowsAndFramesMenu.click();
 //    }
-//    //facem o metoda care sa faca scroll;
 //
+//    //facem o metoda care sa faca scroll;
 //    public void scrollIntoElement(WebElement alertsMenu) {
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("arguments[0].scrollIntoView(true);", alertsMenu);

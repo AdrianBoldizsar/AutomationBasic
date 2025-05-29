@@ -22,6 +22,7 @@ public class HomePage extends BasePage{
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.findElement(pageTitle).getDomAttribute("alt"),
                 "Selenium Online Training","Page is not loaded properly");

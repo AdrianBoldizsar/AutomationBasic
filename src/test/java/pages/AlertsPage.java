@@ -23,6 +23,7 @@ public class AlertsPage extends BasePage{
     }
 
     @Override
+
     public void isPageLoaded() {
         Assert.assertEquals(driver.findElement(pageTitle).getText(),"Alerts","Page is not loaded properly");
     }
@@ -48,15 +49,16 @@ public class AlertsPage extends BasePage{
         Alert confirmAlert = driver.switchTo().alert();
         if (alertValue.equals("ok")) {
             confirmAlert.accept();
-            Assert.assertTrue(driver.findElement(alertResultText).getText().contains(alertValue), "You didn't select Ok. You selected: "
-                    + driver.findElement(alertResultText).getText());
+            Assert.assertTrue(driver.findElement(alertResultText).getText().contains(alertValue), "You didn't " +
+                    "select Ok. You selected: " + driver.findElement(alertResultText).getText());
         }
         if (alertValue.equals("Cancel")) {
             confirmAlert.dismiss();
-            Assert.assertTrue(driver.findElement(alertResultText).getText().contains(alertValue), "You didn't select Cancel. You selected: "
-                    + driver.findElement(alertResultText).getText());
+            Assert.assertTrue(driver.findElement(alertResultText).getText().contains(alertValue), "You didn't "
+                    + "select Cancel. You selected: " + driver.findElement(alertResultText).getText());
         }
     }
+
     public void interactWithPromptBox(String alertValue){
         driver.findElement(confirmPromptButton).click();
         Alert promptAlert = driver.switchTo().alert();
@@ -64,8 +66,8 @@ public class AlertsPage extends BasePage{
         promptAlert.sendKeys(alertValue);
         //apoi apasa pe butonul ok;
         promptAlert.accept();
-        Assert.assertTrue(driver.findElement(promptResult).getText().contains(alertValue),"You didn't enter the right name. In that box "
-                + driver.findElement(promptResult).getText());
+        Assert.assertTrue(driver.findElement(promptResult).getText().contains(alertValue),"You didn't enter the " +
+                "right name. In that box " + driver.findElement(promptResult).getText());
     }
 }
 

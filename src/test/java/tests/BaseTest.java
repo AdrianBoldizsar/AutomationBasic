@@ -11,6 +11,7 @@ public class BaseTest {
     WebDriver driver;
 
     @BeforeMethod
+
     //facem o metoda care deschide un browser;
     public void openBrowser() {
         driver = new ChromeDriver();
@@ -19,7 +20,9 @@ public class BaseTest {
         //facem fereastra browser-ului maximize
         driver.manage().window().maximize();
     }
+
     @AfterMethod
+
     public void closeBrowser() {
         driver.quit();
     }
