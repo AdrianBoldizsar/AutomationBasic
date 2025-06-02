@@ -29,7 +29,9 @@ public class PracticeFormTest extends BaseTest {
         PracticeFormPage practiceFormPage=new PracticeFormPage(driver);
         practiceFormPage.isPageLoaded();
         practiceFormPage.fillEntireForm();
-        //Tema=ValidateFormPage validatePageForm = new ValidateFormPage
+        practiceFormPage.getExpectedValues();
+        practiceFormPage.getActualValues();
+        practiceFormPage.validateThatExpectedValuesEqualActualValues();
 
 //        driver = new ChromeDriver();
 
