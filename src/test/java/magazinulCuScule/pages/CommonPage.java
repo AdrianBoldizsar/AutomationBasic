@@ -1,10 +1,9 @@
-package pages;
+package magazinulCuScule.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import pages.BasePage;
 
 public class CommonPage extends BasePage {
 
@@ -22,13 +21,10 @@ public class CommonPage extends BasePage {
     }
 
     public void goToDesiredSubMenu(String subMenuValue) {
-        elementMethods.scrollPageDown("300");
-        elementMethods.chooseElementFromListByText(subMenuListLocator, subMenuValue);
-//        nu mai avem nevoie de metoda de ma jos daca folosim elementMethods
-//        for (WebElement subMenuName : driver.findElements(subMenuListLocator)) {
-//            if (subMenuName.getText().equals(subMenuValue)) {
-//                subMenuName.click();
-//            }
-//        }
+        for (WebElement subMenuName : driver.findElements(subMenuListLocator)) {
+            if (subMenuName.getText().equals(subMenuValue)) {
+                subMenuName.click();
+            }
+        }
     }
 }
