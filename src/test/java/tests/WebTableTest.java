@@ -14,6 +14,9 @@ import pages.WebTablePage;
 
 import java.util.List;
 
+import static constants.MenuConstants.ELEMENTS_MENU;
+import static constants.SubMenuConstants.WEB_TABLE_SUBMENU;
+
 public class WebTableTest extends BaseTest {
 
 //    public int initialTableSize = 0;
@@ -29,10 +32,10 @@ public class WebTableTest extends BaseTest {
     public void webTableTest() {
         HomePage homePage= new HomePage(driver);
         homePage.isPageLoaded();
-        homePage.goToDesiredMenu("Elements");
+        homePage.goToDesiredMenu(ELEMENTS_MENU);
         CommonPage commonPage=new CommonPage(driver);
         commonPage.isPageLoaded();
-        commonPage.goToDesiredSubMenu("Web Tables");
+        commonPage.goToDesiredSubMenu(WEB_TABLE_SUBMENU);
         WebTablePage webTablePage=new WebTablePage(driver);
         webTablePage.isPageLoaded();
         webTablePage.webTablePageFlow();

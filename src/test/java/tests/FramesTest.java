@@ -11,16 +11,19 @@ import pages.CommonPage;
 import pages.FramesPage;
 import pages.HomePage;
 
+import static constants.MenuConstants.ALERTS_FRAMES_WINDOWS_MENU;
+import static constants.SubMenuConstants.FRAMES_SUBMENU;
+
 public class FramesTest extends BaseTest {
 
     @Test
     public void framesTest() {
         HomePage homePage= new HomePage(driver);
         homePage.isPageLoaded();
-        homePage.goToDesiredMenu("Alerts, Frame & Windows");
+        homePage.goToDesiredMenu(ALERTS_FRAMES_WINDOWS_MENU);
         CommonPage commonPage=new CommonPage(driver);
         commonPage.isPageLoaded();
-        commonPage.goToDesiredSubMenu("Frames");
+        commonPage.goToDesiredSubMenu(FRAMES_SUBMENU);
         FramesPage framesPage=new FramesPage(driver);
         framesPage.isPageLoaded();
         framesPage.interactWithFrameOne();

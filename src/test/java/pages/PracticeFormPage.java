@@ -7,6 +7,8 @@ import org.testng.Assert;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class PracticeFormPage extends BasePage {
 
@@ -36,6 +38,7 @@ public class PracticeFormPage extends BasePage {
     private By submitTableKeysLocator = By.xpath("//tbody//td[1]");
     private By submitTableValuesLocator = By.xpath("//tbody//td[2]");
 
+
     String firstNameText = "Mario";
     String lastNameText = "Luigi";
     String emailFieldText = "test@gmail.com";
@@ -50,7 +53,6 @@ public class PracticeFormPage extends BasePage {
     String readValueText = "Reading";
     String musicValueText = "Music";
     String pictureFileText = "TestImage.jpg";
-    String pictureFilePaths = "src/test/resources/picture/" + pictureFileText;
     String addressValueText = "Strada Sigismund Toduta, nr. 1, ap. 5";
     String stateValueText = "NCR"; //cream variabila locala;
     String cityValueText = "Delhi"; //cream variabila locala;
@@ -62,144 +64,128 @@ public class PracticeFormPage extends BasePage {
     @Override
 
     public void isPageLoaded() {
-        Assert.assertEquals(driver.findElement(pageTitle).getText(), "Practice Form", "Page is not loaded properly");
+        Assert.assertEquals(elementMethods.getTextFromElement(pageTitle), "Practice Form",
+                "Page is not loaded properly");
     }
 
-    public void fillEntireForm() {
-        fillFirstName();
-        fillLastName();
-        fillEmail();
-        scrollPageDown("500");
-        chooseGender();
-        fillPhone();
-        fillDateOfBirth();
-        scrollPageDown("200");
-        selectHobbies();
-        scrollPageDown("200");
-        chooseSubject();
-        uploadImage();
-        fillAddress();
-        fillStateAndCity();
+    public void fillEntireForm(Map<String, Object> practiceFormValue) {
+        fillFirstName((String) practiceFormValue.get("firstNameText"));
+        fillLastName((String) practiceFormValue.get("lastNameText"));
+        // homework
+        fillEmail((String) practiceFormValue.get("emailFieldText"));
+        elementMethods.scrollPageDown("500");
+        chooseGender((String) practiceFormValue.get("genderValueText"));
+        fillPhone((String) practiceFormValue.get("mobilePhoneText"));
+        fillDateOfBirth((String) practiceFormValue.get("monthValueText"),
+                (String) practiceFormValue.get("yearValueText"), (String) practiceFormValue.get("dayValueText"));
+        elementMethods.scrollPageDown("200");
+        chooseSubject((String) practiceFormValue.get("mathSubjectText"),
+                (String) practiceFormValue.get("physicsSubjectText"));
+        elementMethods.scrollPageDown("200");
+        selectHobbies((String) practiceFormValue.get("sportValueText"),
+                (String) practiceFormValue.get("readValueText"), (String) practiceFormValue.get("musicValueText"));
+        uploadImage((String) practiceFormValue.get("pictureFileText"));
+        fillAddress((String) practiceFormValue.get("addressValueText"));
+        fillStateAndCity((String) practiceFormValue.get("stateValueText"), (String) practiceFormValue.get("cityValueText"));
         clickSubmitButton();
 
     }
 
-    public void fillFirstName() {
-        driver.findElement(firstNameField).sendKeys(firstNameText);
+    public void fillFirstName(String firstNameValue) {
+        elementMethods.fillElement(firstNameField, firstNameValue);
     }
 
-    public void fillLastName() {
-        driver.findElement(lastNameField).sendKeys(lastNameText);
+    public void fillLastName(String lastNameValue) {
+        elementMethods.fillElement(lastNameField, lastNameValue);
     }
 
-    public void fillEmail() {
-        driver.findElement(emailField).sendKeys(emailFieldText);
+    public void fillEmail(String emailValue) {
+        elementMethods.fillElement(emailField, emailValue);
     }
 
-    public void scrollPageDown(String scrollValue) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0," + scrollValue + ")");
-    }
-
-    public void chooseGender() {
+    public void chooseGender(String genderValue) {
         List<WebElement> genderList = List.of(driver.findElement(genderMale),
                 driver.findElement(genderFemale), driver.findElement(genderOther)); //un nou mod de a crea o lista;
-        for (int i = 0; i < genderList.size(); i++) {
-            if (genderList.get(i).getText().equals(genderValueText)) {
-                genderList.get(i).click();
-                break;
-            }
-        }
+        elementMethods.chooseElementFromListByText(genderList, genderValue);
     }
 
-    public void fillPhone() {
-        driver.findElement(mobilePhoneField).sendKeys(mobilePhoneText);
+    public void fillPhone(String mobilePhoneValue) {
+        elementMethods.fillElement(mobilePhoneField, mobilePhoneValue);
     }
 
-    public void fillDateOfBirth() {
-        driver.findElement(dateOfBirthInput).click();
-
-        Select selectMonth = new Select(driver.findElement(monthOfBirthElement));
-        selectMonth.selectByVisibleText(monthValueText);
-
-        Select selectYear = new Select(driver.findElement(yearOfBirthElement));
-        selectYear.selectByVisibleText(yearValueText);
-
-        for (int i = 0; i < driver.findElements(dayOfBirthList).size(); i++) {
-            if (driver.findElements(dayOfBirthList).get(i).getText().equals(dayValueText)) {
-                driver.findElements(dayOfBirthList).get(i).click();
-                break;
-            }
-        }
+    public void fillDateOfBirth(String monthValue, String yearValue, String dayValue) {
+        elementMethods.clickElement(dateOfBirthInput);
+        elementMethods.selectElementByText(monthOfBirthElement, monthValue);
+        elementMethods.selectElementByText(yearOfBirthElement, yearValue);
+        elementMethods.chooseElementFromListByText(dayOfBirthList, dayValue);
     }
 
-    public void chooseSubject() {
-        driver.findElement(subjectInputElement).sendKeys(mathSubjectText);
-        driver.findElement(subjectInputElement).sendKeys(Keys.ENTER);
-        driver.findElement(subjectInputElement).sendKeys(physicsSubjectText);
-        driver.findElement(subjectInputElement).sendKeys(Keys.ENTER);
+    public void chooseSubject(String mathSubjectValue, String physicsSubjectValue) {
+        elementMethods.fillElement(subjectInputElement, mathSubjectValue);
+        elementMethods.fillElement(subjectInputElement, Keys.ENTER);
+        elementMethods.fillElement(subjectInputElement, physicsSubjectValue);
+        elementMethods.fillElement(subjectInputElement, Keys.ENTER);
     }
 
-    public void selectHobbies() {
+    public void selectHobbies(String sportValue, String readValue, String musicValue) {
         List<WebElement> hobbiesList = List.of(driver.findElement(sportHobbyElement),
                 driver.findElement(readHobbyElement), driver.findElement(musicHobbyElement));
-        List<String> hobbyValueTextList = List.of(sportValueText, readValueText, musicValueText);
+        List<String> hobbyValueTextList = List.of(sportValue, readValue, musicValue);
         for (String hobby : hobbyValueTextList) {
-            for (int i = 0; i < hobbiesList.size(); i++) {
-                if (hobbiesList.get(i).getText().equals(hobby)) {
-                    hobbiesList.get(i).click();
-                }
-            }
+            elementMethods.chooseElementFromListByText(hobbiesList, hobby);
         }
     }
 
-    public void uploadImage() {
-        File file = new File(pictureFilePaths);
-        driver.findElement(uploadFileElement).sendKeys(file.getAbsolutePath());
+    public void uploadImage(String pictureFileValue) {
+        elementMethods.uploadDocument(uploadFileElement, pictureFileValue);
     }
 
-    public void fillAddress() {
-        driver.findElement(addressField).sendKeys(addressValueText);
+    public void fillAddress(String addressValue) {
+        elementMethods.fillElement(addressField, addressValue);
     }
 
-    public void fillStateAndCity() {
-        driver.findElement(stateInputElement).sendKeys(stateValueText);
-        driver.findElement(stateInputElement).sendKeys(Keys.ENTER);
-        driver.findElement(cityInputElement).sendKeys(cityValueText);
-        driver.findElement(cityInputElement).sendKeys(Keys.ENTER);
+    public void fillStateAndCity(String stateValue, String cityValue) {
+        elementMethods.fillElement(stateInputElement, stateValue);
+        elementMethods.fillElement(stateInputElement, Keys.ENTER);
+        elementMethods.fillElement(cityInputElement, cityValue);
+        elementMethods.fillElement(cityInputElement, Keys.ENTER);
     }
 
     public void clickSubmitButton() {
-        driver.findElement(submitButton).click();
+        elementMethods.clickElement(submitButton);
     }
 
-    public HashMap<String, String> getExpectedValues() {
+    public HashMap<String, String> getExpectedValues(Map<String, Object> practiceFormData) {
         HashMap<String, String> expectedValues = new HashMap<>();
-        expectedValues.put("Student Name", firstNameText + " " + lastNameText);
-        expectedValues.put("Student Email", emailFieldText);
-        expectedValues.put("Gender", genderValueText);
-        expectedValues.put("Mobile", mobilePhoneText);
-        expectedValues.put("Date of Birth", dayValueText + " " + monthValueText + "," + yearValueText);
-        expectedValues.put("Subjects", mathSubjectText + ", " + physicsSubjectText);
-        expectedValues.put("Hobbies", sportValueText + ", " + readValueText + ", " + musicValueText);
-        expectedValues.put("Picture", pictureFileText);
-        expectedValues.put("Address", addressValueText);
-        expectedValues.put("State and City", stateValueText + " " + cityValueText);
+        expectedValues.put("Student Name", practiceFormData.get("firstNameText") + " " + practiceFormData.get("lastNameText"));
+        expectedValues.put("Student Email", (String) practiceFormData.get("emailFieldText"));
+        expectedValues.put("Gender", (String) practiceFormData.get("genderValueText"));
+        expectedValues.put("Mobile", (String) practiceFormData.get("mobilePhoneText"));
+        expectedValues.put("Date of Birth", practiceFormData.get("dayValueText") + " " + practiceFormData.get("monthValueText") +
+                "," + practiceFormData.get("yearValueText"));
+        expectedValues.put("Subjects", practiceFormData.get("mathSubjectText") + ", " + practiceFormData.get("physicsSubjectText"));
+        expectedValues.put("Hobbies", practiceFormData.get("sportValueText") + ", " + practiceFormData.get("readValueText") +
+                ", " + practiceFormData.get("musicValueText"));
+        expectedValues.put("Picture", (String) practiceFormData.get("pictureFileText"));
+        expectedValues.put("Address", (String) practiceFormData.get("addressValueText"));
+        expectedValues.put("State and City", practiceFormData.get("stateValueText") + " " + practiceFormData.get("cityValueText"));
         return expectedValues;
     }
 
     public HashMap<String, String> getActualValues() {
         HashMap<String, String> actualValues = new HashMap<>();
         //indiferent ca alegem submitTablekeys sau values, parcurge oricum ambele liste;
-        for (int i = 0; i < driver.findElements(submitTableKeysLocator).size(); i++) {
-            actualValues.put(driver.findElements(submitTableKeysLocator).get(i).getText(), driver.findElements(submitTableValuesLocator).get(i).getText()); //parcurgem fiecare valoare/cheie si luam textul de pe ea si o adagam in HashMap;
+        for (int i = 0; i < elementMethods.getElements(submitTableKeysLocator).size(); i++) {
+            actualValues.put(elementMethods.getElements(submitTableKeysLocator).get(i).getText(), elementMethods.
+                    getElements(submitTableValuesLocator).get(i).getText());
+            //parcurgem fiecare valoare/cheie si luam textul de pe ea si o adagam in HashMap;
         }
         return actualValues;
     }
 
-    public void validateThatExpectedValuesEqualActualValues() {
-        Assert.assertEquals(getActualValues(), getExpectedValues(), "Actual Values: " + getActualValues() +
-                "are not equal/are not the same with the expected values: " + getExpectedValues());
+    public void validateThatExpectedValuesEqualActualValues(Map<String, Object> practiceFormData) {
+        Assert.assertEquals(getActualValues(), getExpectedValues(practiceFormData), "Actual Values: " + getActualValues() +
+                "are not equal/are not the same with the expected values: " + getExpectedValues(practiceFormData));
     }
 
 }

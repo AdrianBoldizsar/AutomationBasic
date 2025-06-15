@@ -12,6 +12,10 @@ import pages.PracticeFormPage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static constants.MenuConstants.FORMS_MENU;
+import static constants.SubMenuConstants.PRACTICE_FORM_SUBMENU;
 
 
 public class PracticeFormTest extends BaseTest {
@@ -22,16 +26,18 @@ public class PracticeFormTest extends BaseTest {
 
         HomePage homePage = new HomePage(driver);
         homePage.isPageLoaded();
-        homePage.goToDesiredMenu("Forms");
+        homePage.goToDesiredMenu(FORMS_MENU);
         CommonPage commonPage = new CommonPage(driver);
         commonPage.isPageLoaded();
-        commonPage.goToDesiredSubMenu("Practice Form");
+        commonPage.goToDesiredSubMenu(PRACTICE_FORM_SUBMENU);
         PracticeFormPage practiceFormPage=new PracticeFormPage(driver);
         practiceFormPage.isPageLoaded();
         practiceFormPage.fillEntireForm();
         practiceFormPage.getExpectedValues();
         practiceFormPage.getActualValues();
         practiceFormPage.validateThatExpectedValuesEqualActualValues();
+
+
 
 //        driver = new ChromeDriver();
 
