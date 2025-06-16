@@ -1,14 +1,11 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class PracticeFormPage extends BasePage {
 
@@ -38,25 +35,6 @@ public class PracticeFormPage extends BasePage {
     private By submitTableKeysLocator = By.xpath("//tbody//td[1]");
     private By submitTableValuesLocator = By.xpath("//tbody//td[2]");
 
-
-    String firstNameText = "Mario";
-    String lastNameText = "Luigi";
-    String emailFieldText = "test@gmail.com";
-    String genderValueText = "Male";
-    String mobilePhoneText = "0756950504";
-    String monthValueText = "April";
-    String yearValueText = "2025";
-    String dayValueText = "14";
-    String mathSubjectText = "Maths";
-    String physicsSubjectText = "Physics";
-    String sportValueText = "Sports";
-    String readValueText = "Reading";
-    String musicValueText = "Music";
-    String pictureFileText = "TestImage.jpg";
-    String addressValueText = "Strada Sigismund Toduta, nr. 1, ap. 5";
-    String stateValueText = "NCR"; //cream variabila locala;
-    String cityValueText = "Delhi"; //cream variabila locala;
-
     public PracticeFormPage(WebDriver driver) {
         super(driver);
     }
@@ -71,7 +49,6 @@ public class PracticeFormPage extends BasePage {
     public void fillEntireForm(Map<String, Object> practiceFormValue) {
         fillFirstName((String) practiceFormValue.get("firstNameText"));
         fillLastName((String) practiceFormValue.get("lastNameText"));
-        // homework
         fillEmail((String) practiceFormValue.get("emailFieldText"));
         elementMethods.scrollPageDown("500");
         chooseGender((String) practiceFormValue.get("genderValueText"));
@@ -88,7 +65,6 @@ public class PracticeFormPage extends BasePage {
         fillAddress((String) practiceFormValue.get("addressValueText"));
         fillStateAndCity((String) practiceFormValue.get("stateValueText"), (String) practiceFormValue.get("cityValueText"));
         clickSubmitButton();
-
     }
 
     public void fillFirstName(String firstNameValue) {

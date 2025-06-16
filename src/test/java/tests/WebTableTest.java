@@ -1,18 +1,12 @@
 package tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.WebTablePage;
+import propertyUtility.PropertyUtility;
 
-import java.util.List;
+import java.util.Map;
 
 import static constants.MenuConstants.ELEMENTS_MENU;
 import static constants.SubMenuConstants.WEB_TABLE_SUBMENU;
@@ -33,12 +27,18 @@ public class WebTableTest extends BaseTest {
         HomePage homePage= new HomePage(driver);
         homePage.isPageLoaded();
         homePage.goToDesiredMenu(ELEMENTS_MENU);
+
         CommonPage commonPage=new CommonPage(driver);
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(WEB_TABLE_SUBMENU);
+
         WebTablePage webTablePage=new WebTablePage(driver);
         webTablePage.isPageLoaded();
-        webTablePage.webTablePageFlow();
+
+        propertyUtility=new PropertyUtility("WebTableTest");
+        Map<String,Object> webTableDataEntry=propertyUtility.getAllProperties();
+        webTablePage.webTablePageFlow(webTableDataEntry);
+
 //        webTablePage.getTableSize();
 //        webTablePage.clickToAddNewRecord();
 //        webTablePage.fillFormValues();

@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.FramesPage;
 import pages.HomePage;
+import propertyUtility.PropertyUtility;
 
 import static constants.MenuConstants.ALERTS_FRAMES_WINDOWS_MENU;
 import static constants.SubMenuConstants.FRAMES_SUBMENU;
@@ -26,8 +27,9 @@ public class FramesTest extends BaseTest {
         commonPage.goToDesiredSubMenu(FRAMES_SUBMENU);
         FramesPage framesPage=new FramesPage(driver);
         framesPage.isPageLoaded();
-        framesPage.interactWithFrameOne();
-        framesPage.interactWithFrameTwo();
+        propertyUtility=new PropertyUtility("FramesTest");
+        framesPage.interactWithFrameOne(propertyUtility.getPropertyValue("expectedText"));
+        framesPage.interactWithFrameTwo(propertyUtility.getPropertyValue("expectedText"));
     }
 
 //    //facem o metoda care deschide un browser;

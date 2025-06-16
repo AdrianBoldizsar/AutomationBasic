@@ -30,7 +30,7 @@ public class WindowsPage extends BasePage {
                 "Page is not loaded properly");
     }
 
-    public void interactWithNewTab() {
+    public void interactWithNewTab(String expectedTextValue) {
         elementMethods.clickElement(newTabButton);
 //        driver.findElement(newTabButton).click();
         windowsMethods.switchToWindow(1);
@@ -39,7 +39,7 @@ public class WindowsPage extends BasePage {
 //        //noua ne trebuie focus pe al doilea tab, care are indexul 1;
 //        driver.switchTo().window(windowsList.get(1));
 //        //identificam elementul pe care este textul;
-        Assert.assertEquals(elementMethods.getTextFromElement(windowsTextValidationLocator), expectedText,
+        Assert.assertEquals(elementMethods.getTextFromElement(windowsTextValidationLocator), expectedTextValue,
                 "Text is not displayed properly");
         windowsMethods.closeWindowOrTab();
 //        //driver close iti inchide doar tab-ul si driver.quit inchide intreaga instanta, toate taburile;
@@ -49,7 +49,7 @@ public class WindowsPage extends BasePage {
 //        driver.switchTo().window(windowsList.get(0));
     }
 
-    public void interactWithNewWindow() {
+    public void interactWithNewWindow(String expectedTextValue) {
         elementMethods.clickElement(newWindowButton);
 //        driver.findElement(newWindowButton).click();
         windowsMethods.switchToWindow(1);
@@ -57,7 +57,7 @@ public class WindowsPage extends BasePage {
 //        List<String> windowsList = new ArrayList<>(driver.getWindowHandles());
 //        //noua ne trebuie focus pe al doilea tab, care are indexul 1;
 //        driver.switchTo().window(windowsList.get(1));
-        Assert.assertEquals(elementMethods.getTextFromElement(windowsTextValidationLocator), expectedText,
+        Assert.assertEquals(elementMethods.getTextFromElement(windowsTextValidationLocator), expectedTextValue,
                 "Text is not displayed properly");
         windowsMethods.closeWindowOrTab();
 //        //driver close iti inchide doar tab-ul si driver.quit inchide intreaga instanta, toate taburile;

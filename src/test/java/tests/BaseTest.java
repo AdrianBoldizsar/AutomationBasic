@@ -2,13 +2,15 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import propertyUtility.PropertyUtility;
 
 public class BaseTest {
 
     WebDriver driver;
+
+    public PropertyUtility propertyUtility;
 
     @BeforeMethod
 

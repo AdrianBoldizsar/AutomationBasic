@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import pages.CommonPage;
 import pages.HomePage;
 import pages.WindowsPage;
+import propertyUtility.PropertyUtility;
 
 import static constants.MenuConstants.ALERTS_FRAMES_WINDOWS_MENU;
 import static constants.SubMenuConstants.WINDOWS_SUBMENU;
@@ -19,9 +20,10 @@ public class WindowsTest extends BaseTest {
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(WINDOWS_SUBMENU);
         WindowsPage windowsPage=new WindowsPage(driver);
+        propertyUtility=new PropertyUtility("WindowsTest");
         windowsPage.isPageLoaded();
-        windowsPage.interactWithNewTab();
-        windowsPage.interactWithNewWindow();
+        windowsPage.interactWithNewTab(propertyUtility.getPropertyValue("expectedText"));
+        windowsPage.interactWithNewWindow(propertyUtility.getPropertyValue("expectedText"));
         windowsPage.interactWithNewMessageWindow();
     }
 
