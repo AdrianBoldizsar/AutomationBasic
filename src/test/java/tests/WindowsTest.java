@@ -16,12 +16,16 @@ public class WindowsTest extends BaseTest {
         HomePage homePage= new HomePage(driver);
         homePage.isPageLoaded();
         homePage.goToDesiredMenu(ALERTS_FRAMES_WINDOWS_MENU);
+
         CommonPage commonPage=new CommonPage(driver);
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(WINDOWS_SUBMENU);
+
         WindowsPage windowsPage=new WindowsPage(driver);
-        propertyUtility=new PropertyUtility("WindowsTest");
         windowsPage.isPageLoaded();
+
+        propertyUtility=new PropertyUtility("WindowsTest");
+
         windowsPage.interactWithNewTab(propertyUtility.getPropertyValue("expectedText"));
         windowsPage.interactWithNewWindow(propertyUtility.getPropertyValue("expectedText"));
         windowsPage.interactWithNewMessageWindow();
