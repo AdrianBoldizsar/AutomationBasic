@@ -1,16 +1,9 @@
 package tests;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.AlertsPage;
 import pages.CommonPage;
 import pages.HomePage;
-
-import java.time.Duration;
 
 import static constants.MenuConstants.ALERTS_FRAMES_WINDOWS_MENU;
 import static constants.SubMenuConstants.ALERTS_SUBMENU;
@@ -22,12 +15,18 @@ public class AlertsTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.isPageLoaded();
         homePage.goToDesiredMenu(ALERTS_FRAMES_WINDOWS_MENU);
+
         CommonPage commonPage = new CommonPage(driver);
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(ALERTS_SUBMENU);
-        AlertsPage alertsPage = new AlertsPage(driver);
+
+
+        AlertsPage alertsPage= new AlertsPage(driver);
         alertsPage.isPageLoaded();
         alertsPage.interactWithFirstAlert();
+        alertsPage.interactWithTimerAlert();
+        alertsPage.interactWithConfirmAlert("Cancel");
+        alertsPage.interactWithPromptBox("Adrian");
     }
 
 //    //IMPLEMENTAREA BRUTA A TESTULUI

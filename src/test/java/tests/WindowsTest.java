@@ -25,6 +25,7 @@ public class WindowsTest extends BaseTest {
         windowsPage.isPageLoaded();
 
         propertyUtility=new PropertyUtility("WindowsTest");
+        windowsPage.isPageLoaded();
 
         windowsPage.interactWithNewTab(propertyUtility.getPropertyValue("expectedText"));
         windowsPage.interactWithNewWindow(propertyUtility.getPropertyValue("expectedText"));

@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static extentUtility.ExtentHelper.logInfo;
+import static extentUtility.ReportEventType.INFO_STEP;
+import static extentUtility.ReportEventType.PASS_STEP;
+
 public class PracticeFormPage extends BasePage {
 
 
@@ -42,6 +46,7 @@ public class PracticeFormPage extends BasePage {
     @Override
 
     public void isPageLoaded() {
+        logInfo(PASS_STEP,"Validate that PracticeFormPage is loaded properly");
         Assert.assertEquals(elementMethods.getTextFromElement(pageTitle), "Practice Form",
                 "Page is not loaded properly");
     }
@@ -68,28 +73,34 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void fillFirstName(String firstNameValue) {
+        logInfo(INFO_STEP,"User filled first name field with: " + firstNameValue);
         elementMethods.fillElement(firstNameField, firstNameValue);
     }
 
     public void fillLastName(String lastNameValue) {
+        logInfo(INFO_STEP,"User filled last name field with: " + lastNameValue);
         elementMethods.fillElement(lastNameField, lastNameValue);
     }
 
     public void fillEmail(String emailValue) {
+        logInfo(INFO_STEP,"User filled email field with: " + emailValue);
         elementMethods.fillElement(emailField, emailValue);
     }
 
     public void chooseGender(String genderValue) {
+        logInfo(INFO_STEP,"User chooses gender: " + genderValue);
         List<WebElement> genderList = List.of(driver.findElement(genderMale),
                 driver.findElement(genderFemale), driver.findElement(genderOther)); //un nou mod de a crea o lista;
         elementMethods.chooseElementFromListByText(genderList, genderValue);
     }
 
     public void fillPhone(String mobilePhoneValue) {
+        logInfo(INFO_STEP,"User filled phone number field with: " + mobilePhoneValue);
         elementMethods.fillElement(mobilePhoneField, mobilePhoneValue);
     }
 
     public void fillDateOfBirth(String monthValue, String yearValue, String dayValue) {
+        logInfo(INFO_STEP,"User filled date of birth field with: " + dayValue+ " " +monthValue+ " "+ yearValue);
         elementMethods.clickElement(dateOfBirthInput);
         elementMethods.selectElementByText(monthOfBirthElement, monthValue);
         elementMethods.selectElementByText(yearOfBirthElement, yearValue);
@@ -97,6 +108,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void chooseSubject(String mathSubjectValue, String physicsSubjectValue) {
+        logInfo(INFO_STEP,"User filled subject field with: " + mathSubjectValue + " and " + physicsSubjectValue);
         elementMethods.fillElement(subjectInputElement, mathSubjectValue);
         elementMethods.fillElement(subjectInputElement, Keys.ENTER);
         elementMethods.fillElement(subjectInputElement, physicsSubjectValue);
@@ -104,6 +116,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void selectHobbies(String sportValue, String readValue, String musicValue) {
+        logInfo(INFO_STEP,"User filled chooses the following hobbies: " + sportValue+ " and " +readValue+ " and "+ musicValue);
         List<WebElement> hobbiesList = List.of(driver.findElement(sportHobbyElement),
                 driver.findElement(readHobbyElement), driver.findElement(musicHobbyElement));
         List<String> hobbyValueTextList = List.of(sportValue, readValue, musicValue);
@@ -113,14 +126,17 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void uploadImage(String pictureFileValue) {
+        logInfo(INFO_STEP,"User uploaded the following picture: " + pictureFileValue);
         elementMethods.uploadDocument(uploadFileElement, pictureFileValue);
     }
 
     public void fillAddress(String addressValue) {
+        logInfo(INFO_STEP,"User filled address field: " + addressValue);
         elementMethods.fillElement(addressField, addressValue);
     }
 
     public void fillStateAndCity(String stateValue, String cityValue) {
+        logInfo(INFO_STEP,"User chooses city: " + cityValue + " and state: " + stateValue);
         elementMethods.fillElement(stateInputElement, stateValue);
         elementMethods.fillElement(stateInputElement, Keys.ENTER);
         elementMethods.fillElement(cityInputElement, cityValue);
@@ -128,6 +144,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void clickSubmitButton() {
+        logInfo(INFO_STEP,"User clicks submit button");
         elementMethods.clickElement(submitButton);
     }
 
@@ -160,6 +177,7 @@ public class PracticeFormPage extends BasePage {
     }
 
     public void validateThatExpectedValuesEqualActualValues(Map<String, Object> practiceFormData) {
+        logInfo(PASS_STEP,"Validate that input data are the displayed properly in the verification table" + getActualValues());
         Assert.assertEquals(getActualValues(), getExpectedValues(practiceFormData), "Actual Values: " + getActualValues() +
                 "are not equal/are not the same with the expected values: " + getExpectedValues(practiceFormData));
     }

@@ -22,9 +22,11 @@ public class FramesTest extends BaseTest {
         HomePage homePage= new HomePage(driver);
         homePage.isPageLoaded();
         homePage.goToDesiredMenu(ALERTS_FRAMES_WINDOWS_MENU);
+
         CommonPage commonPage=new CommonPage(driver);
         commonPage.isPageLoaded();
         commonPage.goToDesiredSubMenu(FRAMES_SUBMENU);
+
         FramesPage framesPage=new FramesPage(driver);
         framesPage.isPageLoaded();
         propertyUtility=new PropertyUtility("FramesTest");

@@ -44,6 +44,14 @@ public class ElementMethods {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void setWait(Long milliSeconds){
+        try {
+            wait(milliSeconds);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void clickElement(By locator){
         waitForElement(locator);
         getElement(locator).click();
@@ -97,6 +105,7 @@ public class ElementMethods {
     public void pickAndDropElement(By actual, By next){
         waitForElement(actual);
         action.dragAndDrop(getElement(actual), getElement(next)).release().perform();
+//        action.clickAndHold(getElement(actual)).moveToElement(getElement(next)).release().perform();
     }
 
     public String getTextFromElement(By locator){
@@ -114,6 +123,4 @@ public class ElementMethods {
         File file = new File(pictureFilePaths);
         getElement(locator).sendKeys(file.getAbsolutePath());
     }
-
-
 }

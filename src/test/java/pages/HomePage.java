@@ -1,10 +1,15 @@
 package pages;
 
+import extentUtility.ExtentHelper;
+import extentUtility.ReportEventType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import static extentUtility.ExtentHelper.logInfo;
+import static extentUtility.ReportEventType.INFO_STEP;
 
 public class HomePage extends BasePage{
 
@@ -24,11 +29,19 @@ public class HomePage extends BasePage{
     @Override
 
     public void isPageLoaded() {
+
+        logInfo(ReportEventType.PASS_STEP, "Validate that HomePage is loaded properly");
+//        //daca facem import la classa folosim
+//        logInfo(PASS_STEP, "Validate that HomePage is loaded properly");
+
         Assert.assertEquals(elementMethods.getElement(pageTitle).getDomAttribute("alt"),
                 "Selenium Online Training","Page is not loaded properly");
     }
 
     public void goToDesiredMenu(String menuValue) {
+
+        logInfo(INFO_STEP, "User chooses desired Menu: " + menuValue);
+
         elementMethods.scrollPageDown("400");
         elementMethods.chooseElementFromListByText(menuListLocator, menuValue);
 //        for (WebElement menuName : driver.findElements(menuListLocator)) {

@@ -33,8 +33,6 @@ public class PracticeFormTest extends BaseTest {
         practiceFormPage.fillEntireForm(practiceFormData);
         practiceFormPage.validateThatExpectedValuesEqualActualValues(practiceFormData);
 
-
-
 //        driver = new ChromeDriver();
 
 //        // navigam catre pagine website-ului

@@ -6,6 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.time.Duration;
+
+import static extentUtility.ExtentHelper.logInfo;
+import static extentUtility.ReportEventType.INFO_STEP;
+import static extentUtility.ReportEventType.PASS_STEP;
+
 public class DroppablePage extends BasePage {
 
     //locatori specifici;
@@ -20,16 +26,21 @@ public class DroppablePage extends BasePage {
     @Override
 
     public void isPageLoaded() {
+        logInfo(PASS_STEP,"Validate that DroppablePage is loaded properly");
         Assert.assertEquals(elementMethods.getTextFromElement(pageTitle), "Droppable",
                 "Page is not loaded properly");
     }
 
     public void pickAndDropElement() {
+        logInfo(INFO_STEP,"Pick and drop element to a specific target");
         String initialTargetText = elementMethods.getTextFromElement(droppableElement);
+        logInfo(INFO_STEP,"Initial target text is: " + initialTargetText);
 //        String initialTargetText = driver.findElement(droppableElement).getText(); //am salvat textul de pe element intr-un string;
 //        Actions action = new Actions(driver);
 //        //se ia elementul care se trage si se lasa in Element;
 //        action.dragAndDrop(driver.findElement(draggableElement), driver.findElement(droppableElement)).release().perform();
+        String finalTargetText= elementMethods.getTextFromElement(droppableElement);
+        logInfo(PASS_STEP,"Validate that element was dropped successfully -> final target text is:  " + finalTargetText);
         elementMethods.pickAndDropElement(draggableElement, droppableElement);
         Assert.assertNotEquals(elementMethods.getTextFromElement(droppableElement), initialTargetText,
                 "Initial text is the same with actual text after element dropped");
